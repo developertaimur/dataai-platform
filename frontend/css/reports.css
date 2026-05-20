@@ -1,0 +1,159 @@
+.reports-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 40px;
+}
+
+.reports-header h1{
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.reports-header p{
+    color: #A1A1AA;
+}
+
+.generate-btn{
+    background-color: #6366F1;
+    color: white;
+
+    border: none;
+
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+
+.report-generator{
+    margin-bottom: 40px;
+}
+
+.generator-card{
+    background-color: #111113;
+
+    border: 1px solid #27272A;
+
+    border-radius: 16px;
+
+    padding: 24px;
+}
+
+.generator-card h2{
+    margin-bottom: 10px;
+}
+
+.generator-card p{
+    color: #A1A1AA;
+
+    margin-bottom: 24px;
+}
+
+.report-form{
+    display: flex;
+
+    gap: 14px;
+}
+
+.report-form select{
+    flex: 1;
+
+    background-color: #18181B;
+
+    border: 1px solid #27272A;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    color: white;
+}
+
+.report-form button{
+    background-color: #6366F1;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 20px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.report-processing{
+    display: none;
+
+    margin-bottom: 40px;
+}
+
+.report-result{
+    display: none;
+    margin-bottom: 40px;
+}
+
+.report-content{
+    background-color: #18181B;
+    border: 1px solid #27272A;
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 20px;
+}
+
+.report-content h3{
+    margin-bottom: 10px;
+}
+
+.report-content p{
+    color: #A1A1AA;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.report-actions{
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.report-actions button{
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.reports-history{
+    margin-bottom: 40px;
+}
+
+.history-list{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-top: 20px;
+}
+
+.history-item{
+    background-color: #18181B;
+
+    border: 1px solid #27272A;
+
+    padding: 14px 18px;
+
+    border-radius: 10px;
+
+    color: #A1A1AA;
+}

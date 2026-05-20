@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Analytics Platform</title>
+
+    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/register.css">
+
+</head>
+<body>
+
+    <div class="register-container">
+
+    <!-- <form class="register-form"> -->
+
+        <form class="register-form" id="registerForm">
+
+        <h1 class="register-title">
+            Create Account
+        </h1>
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <!-- <input type="text" placeholder="Enter your full name"> -->
+             <input
+type="text"
+id="name"
+placeholder="Enter your full name">
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <!-- <input type="email" placeholder="Enter your email"> -->
+
+            <input
+type="email"
+id="email"
+placeholder="Enter your email">
+        </div>
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <div class="password-box">
+
+                <input id="registerPassword" type="password" placeholder="Create password">
+
+                <button type="button" id="registerShowBtn">
+                    Show
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Confirm password">
+        </div>
+
+        <button type="submit" class="register-btn">
+            Create Account
+        </button>
+
+        <p class="auth-link">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+    </form>
+
+</div>
+
+<div class="success-popup" id="successPopup">
+
+    <div class="success-box">
+
+        <h2>
+            🎉 Registration Successful
+        </h2>
+
+        <p>
+            Thank you for creating your account.
+        </p>
+
+        <a href="login.html">
+            Continue to Login
+        </a>
+
+    </div>
+
+</div>
+
+    <script src="js/register.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

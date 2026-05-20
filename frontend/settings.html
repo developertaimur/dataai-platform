@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/topbar.css">
+
+</head>
+<body>
+
+    <div class="dashboard-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="dashboard-main">
+           <div id="topbar-container"></div>
+
+
+            <section class="settings-header">
+
+                <h1>Settings</h1>
+
+                <p>
+                    Manage your account preferences and platform settings.
+                </p>
+
+            </section>
+
+            <section class="settings-card">
+
+    <h2>Profile Settings</h2>
+
+    <div class="settings-form">
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" value="Taimur">
+        </div>
+
+        <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" value="taimur@example.com">
+        </div>
+
+        <button class="save-btn">
+            Save Changes
+        </button>
+
+    </div>
+
+</section>
+
+<section class="settings-card">
+
+    <h2>Change Password</h2>
+
+    <div class="settings-form">
+
+        <div class="input-group">
+            <label>Current Password</label>
+            <input type="password" id="currentPassword">
+        </div>
+
+        <div class="input-group">
+            <label>New Password</label>
+            <input type="password" id="newPassword">
+        </div>
+
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword">
+        </div>
+
+        <button class="save-btn" id="changePasswordBtn">
+            Update Password
+        </button>
+
+    </div>
+
+</section>
+
+<section class="settings-card">
+
+    <h2>Notification Preferences</h2>
+
+    <div class="toggle-group">
+
+        <div class="toggle-item">
+
+            <div>
+                <h3>Email Notifications</h3>
+                <p>Receive updates about reports and datasets.</p>
+            </div>
+
+            <input type="checkbox" checked>
+
+        </div>
+
+        <div class="toggle-item">
+
+            <div>
+                <h3>AI Insights Alerts</h3>
+                <p>Get notified when new AI insights are generated.</p>
+            </div>
+
+            <input type="checkbox">
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="settings-card">
+
+    <h2>Theme Settings</h2>
+
+    <div class="theme-options">
+
+        <button class="theme-btn active-theme">
+            Dark Mode
+        </button>
+
+        <button class="theme-btn">
+            Light Mode
+        </button>
+
+    </div>
+
+</section>
+
+<section class="settings-card danger-zone">
+
+    <h2>
+        Danger Zone
+    </h2>
+
+    <p>
+        Permanently delete your account and all datasets.
+    </p>
+
+    <button class="delete-account-btn"
+    id="deleteAccountBtn">
+
+        Delete Account
+
+    </button>
+
+</section>
+
+<div class="settings-alert" id="settingsAlert">
+    Settings updated successfully.
+</div>
+
+        </main>
+
+    </div>
+<script src="js/authGuard.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/settings.js"></script>
+        <script src="js/topbar.js"></script>
+
+
+</body>
+</html>

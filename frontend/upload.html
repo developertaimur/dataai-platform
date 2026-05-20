@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Dataset</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/upload.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/topbar.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+
+
+<!-- components for side bar  -->
+        <div id="sidebar-container"></div>
+
+        <main class="dashboard-main">
+
+           <div id="topbar-container"></div>
+
+            <section class="upload-header">
+                <h1>Upload Dataset</h1>
+                <p>Choose your data source to start the upload process.</p>
+            </section>
+
+            <section class="step-box">
+
+    <div class="step active-step" id="stepOne">
+        <span>1</span>
+        <p>Choose Source</p>
+    </div>
+
+    <div class="step" id="stepTwo">
+        <span>2</span>
+        <p>Configure</p>
+    </div>
+
+   
+    <div class="step" id="stepThree">
+    <span>3</span>
+    <p>Preview</p>
+</div>
+
+    <div class="step" id="stepFour">
+    <span>4</span>
+    <p>Processing</p>
+</div>
+
+    <div class="step" id="stepFive">
+    <span>5</span>
+    <p>Complete</p>
+</div>
+
+</section>
+
+<section class="source-grid">
+
+    <div class="source-card">
+        <h3>CSV</h3>
+        <p>Upload CSV files quickly.</p>
+    </div>
+
+    <div class="source-card">
+        <h3>Excel</h3>
+        <p>Import XLSX spreadsheets.</p>
+    </div>
+
+    <div class="source-card">
+        <h3>JSON</h3>
+        <p>Upload structured JSON data.</p>
+    </div>
+
+    <div class="source-card">
+        <h3>SQL Database</h3>
+        <p>Connect your database directly.</p>
+    </div>
+
+    <div class="source-card">
+        <h3>Google Sheets</h3>
+        <p>Sync spreadsheets from Google.</p>
+    </div>
+
+    <div class="source-card">
+        <h3>AWS S3</h3>
+        <p>Import datasets from cloud storage.</p>
+    </div>
+
+</section>
+
+<div class="upload-actions">
+
+    <button id="continueBtn" disabled>
+        Continue
+    </button>
+
+</div>
+
+
+
+<section class="configure-section" id="configureSection">
+
+    <h2>Configure Source</h2>
+
+    <p>
+        Upload your selected file or configure your data source settings.
+    </p>
+
+
+    <div class="file-dropzone" id="fileDropzone">
+
+    <input type="file" id="fileInput" hidden>
+
+    <p id="fileText">Drag and drop your file here</p>
+    <span>or click to browse</span>
+
+    <button type="button" id="removeFileBtn">
+        Remove File
+    </button>
+
+</div>
+
+</section>
+
+<section class="preview-section" id="previewSection">
+
+    <h2>Preview & Name</h2>
+
+    <p>
+        Review your dataset before processing.
+    </p>
+
+    <div class="preview-table">
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Country</th>
+            </tr>
+
+            <tr>
+                <td>Ali</td>
+                <td>24</td>
+                <td>Pakistan</td>
+            </tr>
+
+            <tr>
+                <td>Sarah</td>
+                <td>28</td>
+                <td>UK</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="dataset-name-box">
+        <label>Dataset Name</label>
+        <input type="text" placeholder="Enter dataset name">
+    </div>
+
+    <button class="process-btn" id="processBtn">
+        Process Dataset
+    </button>
+
+</section>
+
+<section class="processing-section" id="processingSection">
+
+    <h2>Processing Dataset</h2>
+
+    <p id="processingText">
+        Validating your data...
+    </p>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+</section>
+
+<section class="complete-section" id="completeSection">
+
+    <h2>Dataset Ready</h2>
+
+    <p>
+        Your dataset has been processed successfully.
+    </p>
+
+    <div class="complete-stats">
+
+        <div class="complete-card">
+            <h3>Rows</h3>
+            <p>120,000</p>
+        </div>
+
+        <div class="complete-card">
+            <h3>Columns</h3>
+            <p>14</p>
+        </div>
+
+        <div class="complete-card">
+            <h3>Charts</h3>
+            <p>8</p>
+        </div>
+
+    </div>
+
+    <div class="complete-actions">
+
+       <a href="dataset.html" class="upload-action-btn">
+    View Dataset
+</a>
+
+<a href="dataset.html" class="upload-action-btn">
+    Start Chatting
+</a>
+
+    </div>
+
+</section>
+
+</section>
+
+        </main>
+
+    </div>
+    <script src="js/authGuard.js"></script>
+    <script src="js/upload.js"></script>
+<script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/topbar.js"></script>
+
+</body>
+</html>

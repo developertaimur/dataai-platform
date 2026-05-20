@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Details</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dataset.css">
+    <link rel="stylesheet" href="css/topbar.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="dashboard-main">
+
+            <div id="topbar-container"></div>
+
+            <section class="dataset-header">
+
+                <div>
+                    <h1>sales_data.csv</h1>
+                    <p>Uploaded on May 14, 2026 • 120,000 rows</p>
+                </div>
+
+                <div class="dataset-actions">
+
+    <button class="action-btn">
+        Refresh
+    </button>
+
+    <button class="action-btn">
+        Export
+    </button>
+    
+<button class="action-btn delete-btn" id="openDeleteModal">
+    Delete
+</button>
+
+</div>
+
+            </section>
+
+            <section class="tabs">
+
+                <button class="tab-btn active-tab">Overview</button>
+                <button class="tab-btn">Analytics</button>
+                <button class="tab-btn">Demographics</button>
+                <button class="tab-btn">Anomalies</button>
+                <button class="tab-btn">Raw Data</button>
+                <button class="tab-btn">Chat</button>
+
+            </section>
+
+            <!-- Overview Content -->
+            <section class="tab-content active-content">
+
+                <section class="overview-grid">
+
+                    <div class="overview-card">
+                        <h3>Total Rows</h3>
+                        <p>120,000</p>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Total Columns</h3>
+                        <p>14</p>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Missing Values</h3>
+                        <p>2.3%</p>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Duplicate Rows</h3>
+                        <p>142</p>
+                    </div>
+
+                </section>
+
+                <section class="chart-grid">
+
+                    <div class="chart-card">
+                        <h3>Sales Trend</h3>
+                        <div class="chart-placeholder">
+                            Chart Area
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Category Breakdown</h3>
+                        <div class="chart-placeholder">
+                            Chart Area
+                        </div>
+                    </div>
+
+                </section>
+
+            </section>
+
+           <!-- Analytics Content -->
+<section class="tab-content">
+
+    <section class="chart-grid">
+
+        <div class="chart-card">
+            <h3>Revenue Trend</h3>
+            <div class="chart-placeholder">
+                Line Chart
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Top Categories</h3>
+            <div class="chart-placeholder">
+                Bar Chart
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Correlation Heatmap</h3>
+            <div class="chart-placeholder">
+                Heatmap
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Outlier Distribution</h3>
+            <div class="chart-placeholder">
+                Box Plot
+            </div>
+        </div>
+
+    </section>
+
+</section>
+
+            <!-- Demographics Content -->
+<section class="tab-content">
+
+    <section class="chart-grid">
+
+        <div class="chart-card">
+            <h3>Age Distribution</h3>
+            <div class="chart-placeholder">
+                Age Bar Chart
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Gender Breakdown</h3>
+            <div class="chart-placeholder">
+                Pie Chart
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Geographic Breakdown</h3>
+            <div class="chart-placeholder">
+                Country / Region Chart
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Income Distribution</h3>
+            <div class="chart-placeholder">
+                Income Histogram
+            </div>
+        </div>
+
+    </section>
+
+</section>
+
+            <!-- Anomalies Content -->
+<section class="tab-content">
+
+    <section class="overview-grid">
+
+        <div class="overview-card">
+            <h3>Outliers Found</h3>
+            <p>84</p>
+        </div>
+
+        <div class="overview-card">
+            <h3>Missing Entries</h3>
+            <p>2,431</p>
+        </div>
+
+        <div class="overview-card">
+            <h3>Duplicate Records</h3>
+            <p>142</p>
+        </div>
+
+        <div class="overview-card">
+            <h3>Invalid Rows</h3>
+            <p>31</p>
+        </div>
+
+    </section>
+
+    <div class="chart-card">
+
+        <h3>
+            Data Quality Report
+        </h3>
+
+        <div class="chart-placeholder">
+            Quality Analysis Table
+        </div>
+
+    </div>
+
+</section>
+
+         <!-- Raw Data Content -->
+<section class="tab-content">
+
+    <div class="chart-card">
+
+        <h3>
+            Dataset Table
+        </h3>
+
+           <input type="text" id="tableSearch"
+        class="table-search"
+        placeholder="Search table data...">
+
+        <button id="exportBtn" class="export-btn">
+    Export CSV
+</button>
+
+        <div class="raw-table">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Revenue</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>John</td>
+                        <td>USA</td>
+                        <td>$12,000</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Sarah</td>
+                        <td>UK</td>
+                        <td>$8,400</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Ali</td>
+                        <td>Pakistan</td>
+                        <td>$5,200</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+           <!-- Chat Content -->
+<section class="tab-content">
+
+    <div class="chat-layout">
+
+        <div class="chat-messages" id="chatMessages">
+
+            <div class="chat-message ai-message">
+                Hello Taimur 👋 Ask anything about your dataset.
+            </div>
+
+            <div class="chat-message user-message">
+                Show me top performing countries
+            </div>
+
+            <div class="chat-message ai-message">
+                USA, Germany and UK are top performing regions.
+            </div>
+
+        </div>
+
+        <div class="chat-input-area">
+
+            <input type="text" id="chatInput"
+            placeholder="Ask AI about your dataset...">
+
+            <button id="sendBtn">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="activity-section">
+
+    <div class="chart-card">
+
+        <h3>
+            Recent Activity
+        </h3>
+
+        <div class="activity-list">
+
+            <div class="activity-item">
+                Dataset uploaded successfully
+            </div>
+
+            <div class="activity-item">
+                AI analyzed missing values
+            </div>
+
+            <div class="activity-item">
+                CSV exported by user
+            </div>
+
+            <div class="activity-item">
+                Correlation analysis generated
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="modal" id="deleteModal">
+
+    <div class="modal-box">
+
+        <h2>Delete Dataset?</h2>
+
+        <p>
+            This action cannot be undone. Are you sure you want to delete this dataset?
+        </p>
+
+        <div class="modal-actions">
+            <button id="cancelDelete">
+                Cancel
+            </button>
+
+            <button id="confirmDelete" class="delete-btn">
+                Delete
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+        </main>
+
+    </div>
+
+<script src="js/authGuard.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/dataset.js"></script>
+    <script src="js/topbar.js"></script>
+
+
+</body>
+</html>

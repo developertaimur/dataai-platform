@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/reports.css">
+    <link rel="stylesheet" href="css/topbar.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="dashboard-main">
+
+<div id="topbar-container"></div>
+            <section class="reports-header">
+
+                <div>
+                    <h1>Reports</h1>
+                    <p>Generate and manage AI-powered dataset reports.</p>
+                </div>
+
+                <button class="generate-btn">
+                    Generate Report
+                </button>
+
+            </section>
+
+            <section class="report-generator">
+
+    <div class="generator-card">
+
+        <h2>
+            Generate AI Report
+        </h2>
+
+        <p>
+            Select report type and generate insights from your dataset.
+        </p>
+
+        <div class="report-form">
+
+            <select id="reportType">
+
+                <option>
+                    Sales Summary
+                </option>
+
+                <option>
+                    Customer Insights
+                </option>
+
+                <option>
+                    Revenue Forecast
+                </option>
+
+                <option>
+                    Data Quality Report
+                </option>
+
+            </select>
+
+            <button id="generateReportBtn">
+                Generate
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="report-processing" id="reportProcessing">
+
+    <div class="generator-card">
+
+        <h2>
+            Generating Report...
+        </h2>
+
+        <p id="processingStatus">
+            AI is analyzing your dataset.
+        </p>
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"
+            id="reportProgress">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="report-result" id="reportResult">
+
+    <div class="generator-card">
+
+        <h2>Generated Report</h2>
+
+        <div class="report-content" id="reportContent">
+
+            <h3>Executive Summary</h3>
+            <p>
+                Sales performance shows steady growth with strong activity from top regions.
+            </p>
+
+            <h3>Key Findings</h3>
+            <p>
+                USA, UK and Germany are the highest performing regions in this dataset.
+            </p>
+
+            <h3>Recommendations</h3>
+            <p>
+                Focus marketing efforts on high-performing regions and investigate low-conversion segments.
+            </p>
+
+        </div>
+
+        <div class="report-actions">
+            <button id="copyReportBtn">Copy Report</button>
+            <button id="downloadReportBtn">Download TXT</button>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="reports-history">
+
+    <div class="generator-card">
+
+        <h2>
+            Recent Reports
+        </h2>
+
+<div class="history-list" id="historyList">
+            <div class="history-item">
+                Sales Summary Report • May 2026
+            </div>
+
+            <div class="history-item">
+                Customer Insights Report • April 2026
+            </div>
+
+            <div class="history-item">
+                Revenue Forecast Report • March 2026
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        </main>
+
+    </div>
+<script src="js/authGuard.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/reports.js"></script>
+    <script src="js/topbar.js"></script>
+
+</body>
+</html>

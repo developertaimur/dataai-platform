@@ -1,0 +1,159 @@
+.settings-header{
+    margin-bottom: 40px;
+}
+
+.settings-header h1{
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.settings-header p{
+    color: #A1A1AA;
+}
+
+.settings-card{
+    background-color: #111113;
+    border: 1px solid #27272A;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.settings-card h2{
+    margin-bottom: 24px;
+}
+
+.settings-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label{
+    color: #A1A1AA;
+}
+
+.input-group input{
+    background-color: #18181B;
+    border: 1px solid #27272A;
+    padding: 14px;
+    border-radius: 10px;
+    color: white;
+}
+
+.save-btn{
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.toggle-group{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.toggle-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid #27272A;
+}
+
+.toggle-item:last-child{
+    border-bottom: none;
+}
+
+.toggle-item h3{
+    margin-bottom: 6px;
+}
+
+.toggle-item p{
+    color: #A1A1AA;
+}
+
+.toggle-item input{
+    width: 20px;
+    height: 20px;
+}
+
+.theme-options{
+    display: flex;
+    gap: 14px;
+}
+
+.theme-btn{
+    background-color: #18181B;
+
+    color: white;
+
+    border: 1px solid #27272A;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.active-theme{
+    background-color: #6366F1;
+}
+
+.danger-zone{
+    border-color: #7F1D1D;
+}
+
+.danger-zone p{
+    color: #A1A1AA;
+
+    margin-bottom: 20px;
+}
+
+.delete-account-btn{
+    background-color: #7F1D1D;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.settings-alert{
+    display: none;
+
+    position: fixed;
+
+    top: 30px;
+    right: 30px;
+
+    background-color: #10B981;
+
+    color: white;
+
+    padding: 16px 22px;
+
+    border-radius: 12px;
+
+    z-index: 1000;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/billing.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="dashboard-main">
+
+           <div id="topbar-container"></div>
+
+
+            <section class="billing-header">
+                <h1>Billing & Credits</h1>
+                <p>Manage your subscription and AI usage credits.</p>
+            </section>
+
+            <section class="billing-grid">
+
+                <div class="billing-card">
+                    <h3>Current Plan</h3>
+                    <h2>Pro AI Plan</h2>
+                    <p>Unlimited dataset uploads and advanced AI analytics.</p>
+                    <div class="plan-price">$49 / month</div>
+                </div>
+
+                <div class="billing-card">
+                    <h3>Remaining Credits</h3>
+                    <h2>1,240</h2>
+                    <p>Credits reset on June 1, 2026</p>
+                </div>
+
+            </section>
+
+            <div class="billing-alert" id="billingAlert">
+                Credits purchased successfully.
+            </div>
+
+            <section class="credits-section">
+
+                <h2>Buy More Credits</h2>
+
+                <div class="credits-grid">
+
+                    <div class="credit-pack">
+                        <h3>Starter Pack</h3>
+                        <p>500 Credits</p>
+                        <div class="credit-price">$10</div>
+                        <button class="buy-btn">Buy Now</button>
+                    </div>
+
+                    <div class="credit-pack">
+                        <h3>Growth Pack</h3>
+                        <p>2,500 Credits</p>
+                        <div class="credit-price">$29</div>
+                        <button class="buy-btn">Buy Now</button>
+                    </div>
+
+                    <div class="credit-pack">
+                        <h3>Enterprise Pack</h3>
+                        <p>10,000 Credits</p>
+                        <div class="credit-price">$99</div>
+                        <button class="buy-btn">Buy Now</button>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="usage-section">
+
+    <h2>Usage Breakdown</h2>
+
+    <div class="usage-card">
+
+        <div class="usage-item">
+            <span>Dataset Uploads</span>
+            <strong>320 credits</strong>
+        </div>
+
+        <div class="usage-item">
+            <span>AI Chat Queries</span>
+            <strong>540 credits</strong>
+        </div>
+
+        <div class="usage-item">
+            <span>Reports Generated</span>
+            <strong>180 credits</strong>
+        </div>
+
+    </div>
+
+</section>
+
+        </main>
+
+    </div>
+<script src="js/authGuard.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/billing.js"></script>
+    <script src="js/topbar.js"></script>
+
+</body>
+</html>
