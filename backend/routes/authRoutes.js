@@ -10,6 +10,8 @@ router.post("/login", authController.loginUser);
 router.put("/update-password", authController.updatePassword);
 router.delete("/delete-account/:id", authController.deleteAccount);
 router.put("/update-profile", authController.updateProfile);
+router.post("/forgot-password", authController.forgotPassword);
+router.post("/reset-password", authController.resetPassword);
 
 
 module.exports = router;

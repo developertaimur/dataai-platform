@@ -219,10 +219,105 @@ function updateProfile(req, res){
 
 }
 
+// forgot pass api 
+
+function forgotPassword(req, res){
+
+    const email =
+    req.body.email;
+
+    const resetToken =
+    Math.random().toString(36).substring(2, 15);
+
+    const expiryTime =
+    new Date(Date.now() + 60 * 60 * 1000);
+
+    const sql =
+    "UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE email = ?";
+
+    db.query(sql, [resetToken, expiryTime, email], function(error, result){
+
+        if(error){
+            return res.status(500).json({
+                message: "Something went wrong"
+            });
+        }
+
+        if(result.affectedRows === 0){
+            return res.status(404).json({
+                message: "Email not found"
+            });
+        }
+
+        res.status(200).json({
+            message: "Password reset link generated",
+            resetLink: `http://127.0.0.1:5501/frontend/reset-password.html?token=${resetToken}`
+        });
+
+    });
+
+}
+
+
+// reset password api 
+
+function resetPassword(req, res){
+
+    const token =
+    req.body.token;
+
+    const newPassword =
+    req.body.newPassword;
+
+    const sql =
+    "SELECT * FROM users WHERE reset_token = ? AND reset_token_expiry > NOW()";
+
+    db.query(sql, [token], function(error, result){
+
+        if(error){
+            return res.status(500).json({
+                message: "Something went wrong"
+            });
+        }
+
+        if(result.length === 0){
+            return res.status(400).json({
+                message: "Invalid or expired token"
+            });
+        }
+
+        const user =
+        result[0];
+
+        const updateSql =
+        "UPDATE users SET password = ?, reset_token = NULL, reset_token_expiry = NULL WHERE id = ?";
+
+        db.query(updateSql, [newPassword, user.id], function(error){
+
+            if(error){
+                return res.status(500).json({
+                    message: "Password reset failed"
+                });
+            }
+
+            res.status(200).json({
+                message: "Password reset successfully"
+            });
+
+        });
+
+    });
+
+}
+
+
+
 module.exports = {
     registerUser,
      loginUser,
       updatePassword,
       deleteAccount,
-      updateProfile
+      updateProfile,
+      forgotPassword,
+      resetPassword
 };
