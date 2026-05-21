@@ -95,7 +95,134 @@ res.status(200).json({
 
 }
 
+
+function updatePassword(req, res){
+
+    const userId = req.body.userId;
+    const currentPassword = req.body.currentPassword;
+    const newPassword = req.body.newPassword;
+
+    const checkSql = "SELECT * FROM users WHERE id = ?";
+
+    db.query(checkSql, [userId], function(error, result){
+
+        if(error){
+            return res.status(500).json({
+                message: "Password update failed"
+            });
+        }
+
+        if(result.length === 0){
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        const user = result[0];
+
+        if(user.password !== currentPassword){
+            return res.status(401).json({
+                message: "Current password is incorrect"
+            });
+        }
+
+        const updateSql = "UPDATE users SET password = ? WHERE id = ?";
+
+        db.query(updateSql, [newPassword, userId], function(error){
+
+            if(error){
+                return res.status(500).json({
+                    message: "Password could not be updated"
+                });
+            }
+
+            res.status(200).json({
+                message: "Password updated successfully"
+            });
+
+        });
+
+    });
+
+}
+
+function deleteAccount(req, res){
+
+    const userId =
+    req.params.id;
+
+    const sql =
+    "DELETE FROM users WHERE id = ?";
+
+    db.query(sql, [userId], function(error, result){
+
+        if(error){
+
+            return res.status(500).json({
+                message: "Account deletion failed"
+            });
+
+        }
+
+        if(result.affectedRows === 0){
+
+            return res.status(404).json({
+                message: "User not found"
+            });
+
+        }
+
+        res.status(200).json({
+            message: "Account deleted successfully"
+        });
+
+    });
+
+}
+
+
+function updateProfile(req, res){
+
+    const userId =
+    req.body.userId;
+
+    const name =
+    req.body.name;
+
+    const email =
+    req.body.email;
+
+    const sql =
+    "UPDATE users SET name = ?, email = ? WHERE id = ?";
+
+    db.query(
+        sql,
+        [name, email, userId],
+
+        function(error, result){
+
+            if(error){
+
+                return res.status(500).json({
+                    message: "Profile update failed"
+                });
+
+            }
+
+            res.status(200).json({
+                message: "Profile updated successfully"
+            });
+
+        }
+
+    );
+
+}
+
 module.exports = {
     registerUser,
-     loginUser
+     loginUser,
+      updatePassword,
+      deleteAccount,
+      updateProfile
 };

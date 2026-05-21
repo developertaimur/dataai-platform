@@ -157,3 +157,96 @@
 
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
+.password-box{
+    display: flex;
+    gap: 10px;
+}
+
+.password-box input{
+    flex: 1;
+}
+
+.password-box button{
+    background-color: #18181B;
+
+    color: white;
+
+    border: 1px solid #27272A;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.modal{
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.7);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.modal-box{
+    width: 420px;
+
+    background-color: #111113;
+
+    border: 1px solid #27272A;
+
+    border-radius: 16px;
+
+    padding: 30px;
+}
+
+.modal-box h2{
+    margin-bottom: 14px;
+}
+
+.modal-box p{
+    color: #A1A1AA;
+    line-height: 1.6;
+}
+
+.modal-actions{
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+.modal-actions button{
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+#cancelDelete{
+    background-color: #27272A;
+    color: white;
+}
+
+.delete-btn{
+    background-color: #7F1D1D;
+    color: white;
+}

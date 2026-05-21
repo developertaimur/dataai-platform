@@ -371,3 +371,30 @@ body{
     color: white;
 }
 
+/* =========================
+   Light Theme
+========================= */
+
+body.light-theme{
+    background-color: #F4F4F5;
+    color: #18181B;
+}
+
+body.light-theme .dashboard-card,
+body.light-theme .settings-card,
+body.light-theme .dataset-card,
+body.light-theme .billing-card,
+body.light-theme .chart-card,
+body.light-theme .sidebar{
+    background-color: white;
+    color: #18181B;
+}
+
+body.light-theme input{
+    background-color: white;
+    color: #18181B;
+}
+
+body.light-theme .topbar{
+    color: #18181B;
+}
