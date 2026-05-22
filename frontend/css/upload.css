@@ -369,3 +369,48 @@ td{
 
     display: inline-block;
 }
+
+.source-card.selected{
+    border-color: #6366F1;
+    background-color: #18181B;
+}
+
+
+/* remove button css */
+
+.selected-file-preview{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #18181B;
+    border: 1px solid #27272A;
+    border-radius: 12px;
+
+    padding: 14px 18px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.selected-file-preview p{
+    color: #A1A1AA;
+}
+
+.selected-file-preview span{
+    color: white;
+    font-weight: bold;
+}
+
+#previewRemoveFileBtn{
+    background-color: #EF4444;
+    color: white;
+
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}

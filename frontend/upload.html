@@ -58,7 +58,7 @@
 
 </section>
 
-<section class="source-grid">
+<section class="source-grid" id="sourceGrid">
 
     <div class="source-card">
         <h3>CSV</h3>
@@ -92,7 +92,7 @@
 
 </section>
 
-<div class="upload-actions">
+<div class="upload-actions" id="uploadActions">
 
     <button id="continueBtn" disabled>
         Continue
@@ -133,6 +133,19 @@
     <p>
         Review your dataset before processing.
     </p>
+
+    <div class="selected-file-preview">
+
+    <p>
+        Selected File:
+        <span id="previewFileName">No file selected</span>
+    </p>
+
+    <button type="button" id="previewRemoveFileBtn">
+        Remove File
+    </button>
+
+</div>
 
     <div class="preview-table">
 
@@ -232,7 +245,7 @@
     <script src="js/authGuard.js"></script>
     <script src="js/upload.js"></script>
 <script src="js/components.js"></script>
-    <script src="js/app.js"></script>
+
     <script src="js/sidebar.js"></script>
     <script src="js/topbar.js"></script>
     <script src="js/theme.js"></script>
