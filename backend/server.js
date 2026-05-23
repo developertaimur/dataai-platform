@@ -45,5 +45,8 @@ app.listen(PORT, function(){
 });
 
 const authRoutes = require("./routes/authRoutes");
+const datasetRoutes = require("./routes/datasetRoutes");
+
 
 app.use("/api/auth", authRoutes);
+app.use("/api/datasets", datasetRoutes);

@@ -414,3 +414,9 @@ td{
 
     cursor: pointer;
 }
+.input-error{
+    color: #ff5c5c;
+    font-size: 14px;
+    margin-top: 20px;
+    display: none;
+}

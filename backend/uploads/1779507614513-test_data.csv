@@ -1,0 +1,6 @@
+id,dataset_name,value,category,is_active,created_at
+1,Q1_Sales_Report,15250.75,Finance,true,2026-01-15
+2,User_Feedback_Count,42,Analytics,true,2026-02-20
+3,Server_Latency_Ms,12.4,IT_Infrastructure,false,2026-03-01
+4,Monthly_Active_Users,8500,Marketing,true,2026-04-10
+5,Conversion_Rate_Pct,3.65,Marketing,true,2026-05-22

@@ -1,6 +1,15 @@
 // ===============================
 // FILE: upload.js
-// PURPOSE: Upload wizard step-by-step screen switching
+// PURPOSE:
+// Upload wizard UI + backend dataset upload
+//
+// FLOW:
+// Choose source
+// -> Configure file
+// -> Preview & name
+// -> Upload to backend
+// -> Processing
+// -> Complete screen
 // ===============================
 
 
@@ -79,6 +88,14 @@ document.getElementById("progressFill");
 const processingText =
 document.getElementById("processingText");
 
+const datasetNameInput =
+document.getElementById("datasetNameInput");
+
+const datasetNameError =
+document.getElementById(
+    "datasetNameError"
+);
+
 
 // Selected source
 let selectedSource =
@@ -100,23 +117,35 @@ function clearActiveSteps(){
 // Helper: hide all wizard content
 function hideAllSections(){
 
-    sourceGrid.style.display =
-    "none";
+    sourceGrid.style.display = "none";
+    uploadActions.style.display = "none";
+    configureSection.style.display = "none";
+    previewSection.style.display = "none";
+    processingSection.style.display = "none";
+    completeSection.style.display = "none";
 
-    uploadActions.style.display =
-    "none";
+}
 
-    configureSection.style.display =
-    "none";
 
-    previewSection.style.display =
-    "none";
+// Helper: show complete screen
+function showCompleteScreen(){
 
-    processingSection.style.display =
-    "none";
+    sourceGrid.style.display = "none";
+    uploadActions.style.display = "none";
+    configureSection.style.display = "none";
+    previewSection.style.display = "none";
+    processingSection.style.display = "none";
 
-    completeSection.style.display =
-    "none";
+    completeSection.style.display = "block";
+
+    clearActiveSteps();
+
+    stepFive.classList.add("active-step");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
@@ -148,7 +177,9 @@ sourceCards.forEach(function(card){
 // Continue button: Step 1 -> Step 2
 if(continueBtn){
 
-    continueBtn.addEventListener("click", function(){
+    continueBtn.addEventListener("click", function(event){
+
+        event.preventDefault();
 
         hideAllSections();
 
@@ -221,60 +252,12 @@ if(fileInput){
 }
 
 
-
-
-// Process button: Step 3 -> Step 4 -> Step 5
-if(processBtn){
-
-    processBtn.addEventListener("click", function(){
-
-        hideAllSections();
-
-        processingSection.style.display =
-        "block";
-
-        clearActiveSteps();
-
-        stepFour.classList.add("active-step");
-
-        progressFill.style.width =
-        "60%";
-
-        processingText.innerText =
-        "Cleaning and analyzing your dataset...";
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-
-        setTimeout(function(){
-
-            hideAllSections();
-
-            completeSection.style.display =
-            "block";
-
-            clearActiveSteps();
-
-            stepFive.classList.add("active-step");
-
-            progressFill.style.width =
-            "100%";
-
-        }, 3000);
-
-    });
-
-}
-
-
 // Remove file from preview section
-
 if(previewRemoveFileBtn){
 
-    previewRemoveFileBtn.addEventListener("click", function(){
+    previewRemoveFileBtn.addEventListener("click", function(event){
+
+        event.preventDefault();
 
         fileInput.value = "";
 
@@ -301,3 +284,152 @@ if(previewRemoveFileBtn){
 }
 
 
+// Upload dataset to backend
+if(processBtn){
+
+    processBtn.addEventListener("click", async function(event){
+
+        event.preventDefault();
+
+        const selectedFile =
+        fileInput.files[0];
+
+        const datasetName =
+        datasetNameInput.value.trim();
+
+        const token =
+        localStorage.getItem("token");
+
+
+        if(!selectedFile){
+
+            alert("Please select a file first.");
+            return;
+
+        }
+
+if(datasetName === ""){
+
+    datasetNameError.innerText =
+    "Dataset name is required.";
+
+    datasetNameError.style.display =
+    "block";
+
+    datasetNameInput.focus();
+
+    return;
+
+}
+
+
+        const formData =
+        new FormData();
+
+        formData.append(
+            "datasetName",
+            datasetName
+        );
+
+        formData.append(
+            "datasetFile",
+            selectedFile
+        );
+
+
+        hideAllSections();
+
+        processingSection.style.display =
+        "block";
+
+        clearActiveSteps();
+
+        stepFour.classList.add("active-step");
+
+        progressFill.style.width =
+        "60%";
+
+        processingText.innerText =
+        "Cleaning and analyzing your dataset...";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        try{
+
+            const response =
+            await fetch(
+                "http://localhost:5000/api/datasets/upload",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Authorization":
+                        `Bearer ${token}`
+                    },
+
+                    body:
+                    formData
+                }
+            );
+
+
+            const result =
+            await response.json();
+
+
+            if(!response.ok){
+
+                alert(result.message);
+
+                hideAllSections();
+
+                previewSection.style.display =
+                "block";
+
+                clearActiveSteps();
+
+                stepThree.classList.add("active-step");
+
+                return;
+
+            }
+
+
+            setTimeout(function(){
+
+                progressFill.style.width =
+                "100%";
+
+                processingText.innerText =
+                "Dataset processing completed.";
+
+                showCompleteScreen();
+
+            }, 3000);
+
+        }
+
+        catch(error){
+
+            console.log(error);
+
+            alert("Something went wrong while uploading dataset.");
+
+            hideAllSections();
+
+            previewSection.style.display =
+            "block";
+
+            clearActiveSteps();
+
+            stepThree.classList.add("active-step");
+
+        }
+
+    });
+
+}
