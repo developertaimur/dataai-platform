@@ -206,6 +206,7 @@ if(confirmDelete){
         deleteDataset();
 
     });
+    
 
 }
 
