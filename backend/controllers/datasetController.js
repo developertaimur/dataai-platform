@@ -42,6 +42,104 @@ function getMyDatasets(req, res){
 }
 
 
+
+// Get single dataset details
+function getSingleDataset(req, res){
+
+    const datasetId =
+    req.params.id;
+
+    const userId =
+    req.user.id;
+
+    const sql =
+    `
+    SELECT *
+    FROM datasets
+    WHERE id = ?
+    AND user_id = ?
+    `;
+
+    db.query(
+        sql,
+        [datasetId, userId],
+
+        function(error, result){
+
+            if(error){
+
+                return res.status(500).json({
+                    message: "Failed to fetch dataset"
+                });
+
+            }
+
+            if(result.length === 0){
+
+                return res.status(404).json({
+                    message: "Dataset not found"
+                });
+
+            }
+
+            res.status(200).json({
+                message: "Dataset fetched successfully",
+                dataset: result[0]
+            });
+
+        }
+    );
+
+}
+
+
+// Delete dataset
+function deleteDataset(req, res){
+
+    const datasetId =
+    req.params.id;
+
+    const userId =
+    req.user.id;
+
+    const sql =
+    `
+    DELETE FROM datasets
+    WHERE id = ?
+    AND user_id = ?
+    `;
+
+    db.query(
+        sql,
+        [datasetId, userId],
+
+        function(error, result){
+
+            if(error){
+
+                return res.status(500).json({
+                    message: "Failed to delete dataset"
+                });
+
+            }
+
+            if(result.affectedRows === 0){
+
+                return res.status(404).json({
+                    message: "Dataset not found"
+                });
+
+            }
+
+            res.status(200).json({
+                message: "Dataset deleted successfully"
+            });
+
+        }
+    );
+
+}
+
 // Upload dataset file and save record in database
 function uploadDataset(req, res){
 
@@ -109,5 +207,7 @@ function uploadDataset(req, res){
 
 module.exports = {
     getMyDatasets,
-    uploadDataset
+    getSingleDataset,
+    uploadDataset,
+    deleteDataset
 };

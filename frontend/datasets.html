@@ -1,0 +1,96 @@
+<!-- ===============================
+FILE: datasets.html
+PURPOSE: Show all uploaded datasets
+FLOW:
+Page load -> datasets.js -> GET /api/datasets -> show datasets in UI
+=============================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datasets</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/topbar.css">
+    <link rel="stylesheet" href="css/datasets.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="dashboard-main">
+
+            <div id="topbar-container"></div>
+
+            <section class="datasets-header">
+                <div>
+                    <h1>Datasets</h1>
+                    <p>Manage and view all your uploaded datasets</p>
+                </div>
+
+                <a href="upload.html" class="upload-btn">
+                    Upload Dataset
+                </a>
+            </section>
+
+            <section class="datasets-tools">
+                <input 
+                    type="text" 
+                    id="datasetSearch" 
+                    placeholder="Search datasets..."
+                >
+            </section>
+
+            <section id="datasetsContainer" class="datasets-grid">
+                <p>Loading datasets...</p>
+            </section>
+
+            <!-- Delete Modal -->
+<div class="modal" id="deleteModal">
+
+    <div class="modal-box">
+
+        <h2>Delete Dataset?</h2>
+
+        <p>
+            This action cannot be undone. Are you sure you want to delete this dataset?
+        </p>
+
+        <div class="modal-actions">
+            <button id="cancelDelete">
+                Cancel
+            </button>
+
+            <button id="confirmDelete" class="delete-btn">
+                Delete
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Toast Message -->
+<div id="toast" class="toast">
+    Dataset deleted successfully
+</div>
+
+        </main>
+
+    </div>
+
+    <script src="js/authGuard.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/topbar.js"></script>
+    <script src="js/datasets.js"></script>
+    <script src="js/theme.js"></script>
+
+</body>
+</html>

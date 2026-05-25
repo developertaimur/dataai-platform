@@ -30,6 +30,14 @@ router.get(
     datasetController.getMyDatasets
 );
 
+
+// Get single dataset
+router.get(
+    "/:id",
+    verifyToken,
+    datasetController.getSingleDataset
+);
+
 router.post(
     "/upload",
     verifyToken,
@@ -37,5 +45,11 @@ router.post(
     datasetController.uploadDataset
 );
 
+// Delete dataset
+router.delete(
+    "/:id",
+    verifyToken,
+    datasetController.deleteDataset
+);
 
 module.exports = router;
