@@ -3,7 +3,7 @@
 // PURPOSE: Load topbar, show user, logout
 // ===============================
 
-fetch("components/topbar.html")
+fetch("../components/topbar.html")
     .then(function(response){
         return response.text();
     })
@@ -46,9 +46,7 @@ document.addEventListener("click", function(event){
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 
-        window.location.href =
-        "login.html";
-
+     window.location.href = "/frontend/auth/login.html";
     }
 
 });

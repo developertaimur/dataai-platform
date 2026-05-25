@@ -122,8 +122,7 @@ if(response.ok){
 
     setTimeout(function(){
 
-        window.location.href =
-        "dashboard.html";
+      window.location.href = "/frontend/pages/dashboard.html";
 
     }, 1500);
 

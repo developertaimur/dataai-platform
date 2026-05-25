@@ -251,7 +251,7 @@ function forgotPassword(req, res){
 
         res.status(200).json({
             message: "Password reset link generated",
-            resetLink: `http://127.0.0.1:5501/frontend/reset-password.html?token=${resetToken}`
+            resetLink: `http://127.0.0.1:5501/frontend/auth/reset-password.html?token=${resetToken}`
         });
 
     });

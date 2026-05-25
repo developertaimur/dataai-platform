@@ -5,7 +5,7 @@
 
 
 // Load sidebar component
-fetch("components/sidebar.html")
+fetch("../components/sidebar.html")
     .then(function(response){
         return response.text();
     })
