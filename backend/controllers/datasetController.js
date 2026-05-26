@@ -12,6 +12,9 @@
 const db =
 require("../config/db");
 
+const fs = require("fs");
+const csv = require("csv-parser");
+
 
 // Get logged-in user's datasets
 function getMyDatasets(req, res){
@@ -160,46 +163,117 @@ function uploadDataset(req, res){
     }
 
     const fileType =
-    uploadedFile.originalname.split(".").pop();
+    uploadedFile.originalname
+    .split(".")
+    .pop()
+    .toLowerCase();
 
-    // Multer uploaded file ka size bytes me deta hai
     const fileSize =
     uploadedFile.size;
 
-    const sql =
-    `INSERT INTO datasets
-    (user_id, dataset_name, original_file_name, file_type, file_path, file_size, status)
-    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    let rowsCount = 0;
+    let columnsCount = 0;
 
-    db.query(
-        sql,
-        [
-            userId,
-            datasetName,
-            uploadedFile.originalname,
-            fileType,
-            uploadedFile.path,
-            fileSize,
-            "Ready"
-        ],
+    // Only read CSV files
+    if(fileType !== "csv"){
 
-        function(error, result){
+        return saveDataset(
+            rowsCount,
+            columnsCount
+        );
 
-            if(error){
+    }
 
-                return res.status(500).json({
-                    message: "Dataset upload failed"
+    fs.createReadStream(uploadedFile.path)
+    .pipe(csv())
+
+    .on("headers", function(headers){
+
+        columnsCount =
+        headers.length;
+
+    })
+
+    .on("data", function(){
+
+        rowsCount++;
+
+    })
+
+    .on("end", function(){
+
+        saveDataset(
+            rowsCount,
+            columnsCount
+        );
+
+    })
+
+    .on("error", function(){
+
+        return res.status(500).json({
+            message: "Failed to read CSV file"
+        });
+
+    });
+
+    function saveDataset(
+        rowsCount,
+        columnsCount
+    ){
+
+        const sql =
+        `
+        INSERT INTO datasets
+        (
+            user_id,
+            dataset_name,
+            original_file_name,
+            file_type,
+            file_path,
+            file_size,
+            rows_count,
+            columns_count,
+            status
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+
+        db.query(
+            sql,
+            [
+                userId,
+                datasetName,
+                uploadedFile.originalname,
+                fileType,
+                uploadedFile.path,
+                fileSize,
+                rowsCount,
+                columnsCount,
+                "Ready"
+            ],
+
+            function(error, result){
+
+                if(error){
+
+                    return res.status(500).json({
+                        message: "Dataset upload failed"
+                    });
+
+                }
+
+                res.status(201).json({
+                    message: "Dataset uploaded successfully",
+                    datasetId: result.insertId,
+                    rowsCount: rowsCount,
+                    columnsCount: columnsCount
                 });
 
             }
+        );
 
-            res.status(201).json({
-                message: "Dataset uploaded successfully",
-                datasetId: result.insertId
-            });
-
-        }
-    );
+    }
 
 }
 

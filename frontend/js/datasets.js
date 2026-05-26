@@ -103,12 +103,13 @@ function renderDatasets(datasets){
             </span>
 
             <div class="dataset-info">
-                <p><strong>File:</strong> ${dataset.original_file_name}</p>
-                <p><strong>Type:</strong> ${dataset.file_type}</p>
-                <p><strong>Rows:</strong> ${dataset.rows_count || 0}</p>
-                <p><strong>Columns:</strong> ${dataset.columns_count || 0}</p>
-                <p><strong>Uploaded:</strong> ${formatDate(dataset.created_at)}</p>
-            </div>
+    <p><strong>File:</strong> ${dataset.original_file_name}</p>
+    <p><strong>Type:</strong> ${dataset.file_type}</p>
+    <p><strong>Rows:</strong> ${dataset.rows_count || 0}</p>
+    <p><strong>Columns:</strong> ${dataset.columns_count || 0}</p>
+    <p><strong>Size:</strong> ${formatFileSize(dataset.file_size || 0)}</p>
+    <p><strong>Uploaded:</strong> ${formatDate(dataset.created_at)}</p>
+</div>
 
             <div class="dataset-actions">
                 <a href="dataset.html?id=${dataset.id}" class="view-btn">
@@ -264,5 +265,35 @@ function showToast(message){
         "none";
 
     }, 3000);
+
+}
+
+function formatFileSize(bytes){
+
+    if(bytes === 0){
+        return "0 Bytes";
+    }
+
+    if(bytes < 1024){
+        return bytes + " Bytes";
+    }
+
+    if(bytes < 1024 * 1024){
+
+        const kb = bytes / 1024;
+        return kb.toFixed(2) + " KB";
+
+    }
+
+    if(bytes < 1024 * 1024 * 1024){
+
+        const mb = bytes / (1024 * 1024);
+        return mb.toFixed(2) + " MB";
+
+    }
+
+    const gb = bytes / (1024 * 1024 * 1024);
+
+    return gb.toFixed(2) + " GB";
 
 }
