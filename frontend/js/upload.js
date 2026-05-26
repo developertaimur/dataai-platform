@@ -96,6 +96,25 @@ document.getElementById(
     "datasetNameError"
 );
 
+const completeRows =
+document.getElementById("completeRows");
+
+const completeColumns =
+document.getElementById("completeColumns");
+
+const completeCharts =
+document.getElementById("completeCharts");
+
+const viewUploadedDatasetBtn =
+document.getElementById(
+    "viewUploadedDatasetBtn"
+);
+
+const startChattingBtn =
+document.getElementById(
+    "startChattingBtn"
+);
+
 
 // Selected source
 let selectedSource =
@@ -399,17 +418,49 @@ if(datasetName === ""){
             }
 
 
+            // setTimeout(function(){
+
+            //     progressFill.style.width =
+            //     "100%";
+
+            //     processingText.innerText =
+            //     "Dataset processing completed.";
+
+            //     showCompleteScreen();
+
+            // }, 3000);
+
             setTimeout(function(){
 
-                progressFill.style.width =
-                "100%";
+    progressFill.style.width =
+    "100%";
 
-                processingText.innerText =
-                "Dataset processing completed.";
+    processingText.innerText =
+    "Dataset processing completed.";
 
-                showCompleteScreen();
+    // Dynamic stats
+    completeRows.innerText =
+    result.rowsCount || 0;
 
-            }, 3000);
+    completeColumns.innerText =
+    result.columnsCount || 0;
+
+    // Future analytics module me real charts count ayega
+    completeCharts.innerText =
+    0;
+
+    // Dynamic buttons
+    viewUploadedDatasetBtn.href =
+    "dataset.html?id=" +
+    result.datasetId;
+
+    startChattingBtn.href =
+    "dataset.html?id=" +
+    result.datasetId;
+
+    showCompleteScreen();
+
+}, 3000);
 
         }
 
