@@ -30,6 +30,12 @@ router.get(
     datasetController.getMyDatasets
 );
 
+// Get dashboard statistics
+router.get(
+    "/stats",
+    verifyToken,
+    datasetController.getDatasetStats
+);
 
 // Get single dataset
 router.get(

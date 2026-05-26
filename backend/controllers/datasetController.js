@@ -205,9 +205,84 @@ function uploadDataset(req, res){
 }
 
 
+// Get dashboard statistics for logged-in user
+function getDatasetStats(req, res){
+
+    // JWT token se logged-in user ki id milti hai
+    const userId =
+    req.user.id;
+
+    // Total datasets count karne ke liye query
+    const statsSql =
+    `
+    SELECT 
+        COUNT(*) AS totalDatasets
+    FROM datasets
+    WHERE user_id = ?
+    `;
+
+    // Dashboard par recent 6 datasets dikhane ke liye query
+    const recentSql =
+    `
+    SELECT 
+        id,
+        dataset_name,
+        original_file_name,
+        file_type,
+        status,
+        created_at
+    FROM datasets
+    WHERE user_id = ?
+    ORDER BY created_at DESC
+    LIMIT 6
+    `;
+
+    db.query(statsSql, [userId], function(error, statsResult){
+
+        if(error){
+
+            return res.status(500).json({
+                message: "Failed to fetch dashboard stats"
+            });
+
+        }
+
+        db.query(recentSql, [userId], function(error, recentResult){
+
+            if(error){
+
+                return res.status(500).json({
+                    message: "Failed to fetch recent datasets"
+                });
+
+            }
+
+            res.status(200).json({
+                message: "Dashboard stats fetched successfully",
+
+                stats: {
+                    totalDatasets: statsResult[0].totalDatasets,
+
+                    // Ye abhi dummy rakhe hain, later billing/chat module se real karenge
+                    creditsRemaining: 0,
+                    queriesThisMonth: 0,
+                    storageUsed: "0 MB"
+                },
+
+                recentDatasets: recentResult
+            });
+
+        });
+
+    });
+
+}
+
+
 module.exports = {
     getMyDatasets,
     getSingleDataset,
     uploadDataset,
-    deleteDataset
+    deleteDataset,
+    getDatasetStats
 };
