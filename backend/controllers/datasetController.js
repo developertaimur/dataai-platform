@@ -139,7 +139,6 @@ function deleteDataset(req, res){
     );
 
 }
-
 // Upload dataset file and save record in database
 function uploadDataset(req, res){
 
@@ -152,7 +151,6 @@ function uploadDataset(req, res){
     const uploadedFile =
     req.file;
 
-
     if(!uploadedFile){
 
         return res.status(400).json({
@@ -161,16 +159,17 @@ function uploadDataset(req, res){
 
     }
 
-
     const fileType =
     uploadedFile.originalname.split(".").pop();
 
+    // Multer uploaded file ka size bytes me deta hai
+    const fileSize =
+    uploadedFile.size;
 
     const sql =
     `INSERT INTO datasets
-    (user_id, dataset_name, original_file_name, file_type, file_path, status)
-    VALUES (?, ?, ?, ?, ?, ?)`;
-
+    (user_id, dataset_name, original_file_name, file_type, file_path, file_size, status)
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
     db.query(
         sql,
@@ -180,6 +179,7 @@ function uploadDataset(req, res){
             uploadedFile.originalname,
             fileType,
             uploadedFile.path,
+            fileSize,
             "Ready"
         ],
 
@@ -192,7 +192,6 @@ function uploadDataset(req, res){
                 });
 
             }
-
 
             res.status(201).json({
                 message: "Dataset uploaded successfully",
@@ -214,12 +213,13 @@ function getDatasetStats(req, res){
 
     // Total datasets count karne ke liye query
     const statsSql =
-    `
-    SELECT 
-        COUNT(*) AS totalDatasets
-    FROM datasets
-    WHERE user_id = ?
-    `;
+`
+SELECT 
+    COUNT(*) AS totalDatasets,
+    COALESCE(SUM(file_size), 0) AS totalStorage
+FROM datasets
+WHERE user_id = ?
+`;
 
     // Dashboard par recent 6 datasets dikhane ke liye query
     const recentSql =
@@ -261,13 +261,11 @@ function getDatasetStats(req, res){
                 message: "Dashboard stats fetched successfully",
 
                 stats: {
-                    totalDatasets: statsResult[0].totalDatasets,
-
-                    // Ye abhi dummy rakhe hain, later billing/chat module se real karenge
-                    creditsRemaining: 0,
-                    queriesThisMonth: 0,
-                    storageUsed: "0 MB"
-                },
+    totalDatasets: statsResult[0].totalDatasets,
+    creditsRemaining: 0,
+    queriesThisMonth: 0,
+    storageUsed: formatFileSize(statsResult[0].totalStorage)
+},
 
                 recentDatasets: recentResult
             });
@@ -275,6 +273,35 @@ function getDatasetStats(req, res){
         });
 
     });
+
+}
+
+function formatFileSize(bytes){
+
+    if(bytes === 0){
+        return "0 Bytes";
+    }
+
+    if(bytes < 1024){
+        return bytes + " Bytes";
+    }
+
+    if(bytes < 1024 * 1024){
+
+        const kb = bytes / 1024;
+        return kb.toFixed(2) + " KB";
+
+    }
+
+    if(bytes < 1024 * 1024 * 1024){
+
+        const mb = bytes / (1024 * 1024);
+        return mb.toFixed(2) + " MB";
+
+    }
+
+    const gb = bytes / (1024 * 1024 * 1024);
+    return gb.toFixed(2) + " GB";
 
 }
 
